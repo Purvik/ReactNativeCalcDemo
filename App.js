@@ -12,6 +12,7 @@ import {Platform, StyleSheet, Text, View, Button, TouchableOpacity} from 'react-
 type Props = {};
 export default class App extends Component<Props> {
 
+    //application components
     constructor(){
       super()
       this.state = {
@@ -21,16 +22,19 @@ export default class App extends Component<Props> {
       this.operations = ['DEL','+','-','*','/']
     }
 
+
+    //Result Calculate Function
     calculateResult(){
       const text = this.state.resultText
       console.log(text, eval(text))
-      this.setState({
+      this.setState({   
           calculationText: eval(text)
       })
       //eval(text)
       
     }
 
+    //validate button press
     validate(){
       const text = this.state.resultText
       switch (text.slice(-1)) {
@@ -43,6 +47,7 @@ export default class App extends Component<Props> {
       return true
     }
 
+    //Button Press called Function
     buttonPressed(text){
       console.log(text)
 
@@ -55,6 +60,7 @@ export default class App extends Component<Props> {
       })
     }
    
+   //
    operate(operation){
      switch (operation) {
         case 'DEL':
@@ -79,8 +85,11 @@ export default class App extends Component<Props> {
      }
    }
  
+
+  //main render function to have layout
   render() {
 
+    //number button layout
     let rows = []
     let nums = [[7,8,9],[4,5,6],[1,2,3],['.',0,'=']]
     for (let i = 0; i < 4; i++) {
@@ -93,6 +102,7 @@ export default class App extends Component<Props> {
       rows.push(<View key ={i} style={styles.row}>{row}</View>)
     }
 
+    //operation button layout
     let ops = []
     for (let i = 0; i < 5; i++) {
       ops.push(
@@ -102,7 +112,7 @@ export default class App extends Component<Props> {
               )
     }
 
-
+    //layout views
     return (
       <View style={styles.container}>
         <View style={styles.result}>
@@ -130,6 +140,7 @@ export default class App extends Component<Props> {
   }
 }
 
+//style scripts for each view component
 const styles = StyleSheet.create({
   container:{
     flex:1
